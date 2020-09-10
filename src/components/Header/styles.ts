@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 interface ContainerProps {
   size?: 'small' | 'large';
@@ -33,4 +34,32 @@ export const Container = styled.div<ContainerProps>`
       }
     }
   }
+`;
+
+export const NavigationMenu = styled.ul`
+  display: flex;
+
+  li {
+    list-style: none;
+
+    & + li {
+      margin-left: 32px;
+    }
+  }
+`;
+
+interface PropsLink {
+  to: string;
+  url: string;
+}
+
+export const MenuOption = styled(Link)<PropsLink>`
+  display: block;
+  padding: 0 0 6px 0;
+
+  ${props =>
+    props.to === props.url &&
+    css`
+      border-bottom: 2px solid #ff872c;
+    `}
 `;
